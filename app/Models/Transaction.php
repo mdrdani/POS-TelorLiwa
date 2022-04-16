@@ -20,4 +20,8 @@ class Transaction extends Model
     public function customer(){
         return $this->belongsTo(Customer::class);
     }
+
+    public function cashier(){
+        return $this->belongsTo(User::class, 'cashier_id');
+    }
 }
