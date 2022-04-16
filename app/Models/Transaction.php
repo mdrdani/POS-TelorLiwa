@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Transaction extends Model
 {
@@ -27,5 +29,12 @@ class Transaction extends Model
 
     public function profits(){
         return $this->hasMany(Profit::class);
+    }
+
+    protected function createAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->format('d-M-Y H:i:s'),
+        );
     }
 }
