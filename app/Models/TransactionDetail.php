@@ -12,4 +12,8 @@ class TransactionDetail extends Model
     protected $fillable = [
         'transaction_id', 'product_id','qty','price'
     ];
+
+    public function transaction(){
+        return $this->belongsTo(Transaction::class);
+    }
 }

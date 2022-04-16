@@ -12,4 +12,8 @@ class Transaction extends Model
     protected $fillable = [
         'cashier_id','customer_id','invoice','cash','change','discount','grand_total'
     ];
+
+    public function details(){
+        return $this->hasMany(TransactionDetail::class);
+    }
 }
