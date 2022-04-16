@@ -24,4 +24,8 @@ class Transaction extends Model
     public function cashier(){
         return $this->belongsTo(User::class, 'cashier_id');
     }
+
+    public function profits(){
+        return $this->hasMany(Profit::class);
+    }
 }
