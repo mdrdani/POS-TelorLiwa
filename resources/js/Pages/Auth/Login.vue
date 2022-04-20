@@ -39,9 +39,9 @@
                                         <i class="fa fa-lock"></i>
                                     </span>
                                 </div>
-                                <input type="password" class="form-control" :class="{ 'is-invalid' : errors.password }" placeholder="Password">
+                                <input class="form-control" v-model="form.password" :class="{ 'is-invalid': errors.password }" type="password" placeholder="Password">
                             </div>
-                            <div class="alert alert-danger" v-if="errors.password">
+                            <div v-if="errors.password" class="alert alert-danger">
                                 {{ errors.password }}
                             </div>
                             <div class="row">
