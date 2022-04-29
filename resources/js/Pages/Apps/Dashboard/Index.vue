@@ -25,9 +25,9 @@
                                 <span class="font-weight-bold"><i class="fa fa-chart-line"></i> SALES TODAY</span>
                             </div>
                             <div class="card-body">
-                                <strong>0</strong> SALES
+                                <strong>{{ count_sales_today }}</strong> SALES
                                 <hr>
-                                <h5 class="fw-bold">Rp. 0</h5>
+                                <h5 class="fw-bold">Rp. {{ formatPrice(sum_sales_today) }}</h5>
                             </div>
                         </div>
 
@@ -36,7 +36,7 @@
                                 <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> PROFITS TODAY</span>
                             </div>
                             <div class="card-body">
-                                <h5 class="fw-bold">Rp. 0</h5>
+                                <h5 class="fw-bold">Rp. {{ formatPrice(sum_profits_today) }}</h5>
                             </div>
                         </div>
 
@@ -86,6 +86,17 @@
         components: {
             Head,
         },
+
+        props: {
+            // total penjualan hari ini
+            count_sales_today: Number,
+
+            // jumlah (Rp. ) penjualan hari ini
+            sum_sales_today : Number,
+
+            // jumlah profit/laba hari ini
+            sum_profits_today: Number,
+        }
     }
 </script>
 
