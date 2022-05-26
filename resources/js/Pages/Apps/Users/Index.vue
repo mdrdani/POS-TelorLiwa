@@ -39,7 +39,7 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <Link class="btn btn-success btn-sm me-2" href="#" v-if="hasAnyPermission(['users.edit'])"><i class="fa fa-pencil-alt me-1"></i>Edit</Link>
+                                                <Link class="btn btn-success btn-sm me-2" :href="`/apps/users/${user.id}/edit`" v-if="hasAnyPermission(['users.edit'])"><i class="fa fa-pencil-alt me-1"></i>Edit</Link>
                                                 <button class="btn btn-danger btn-sm" v-if="hasAnyPermission(['users.delete'])"><i class="fa fa-trash"></i>Delete</button>
                                             </td>
                                         </tr>
