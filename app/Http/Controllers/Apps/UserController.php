@@ -82,4 +82,12 @@ class UserController extends Controller
 
         return redirect()->route('apps.users.index');
     }
+
+    public function destroy($id){
+        $user = User::findOrFail($id);
+
+        $user->delete();
+        
+        return redirect()->route('apps.users.index');
+    }
 }

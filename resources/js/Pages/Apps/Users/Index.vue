@@ -40,7 +40,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <Link class="btn btn-success btn-sm me-2" :href="`/apps/users/${user.id}/edit`" v-if="hasAnyPermission(['users.edit'])"><i class="fa fa-pencil-alt me-1"></i>Edit</Link>
-                                                <button class="btn btn-danger btn-sm" v-if="hasAnyPermission(['users.delete'])"><i class="fa fa-trash"></i>Delete</button>
+                                                <button @click.prevent="destroy(user.id)" class="btn btn-danger btn-sm" v-if="hasAnyPermission(['users.delete'])"><i class="fa fa-trash"></i>Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -61,6 +61,7 @@
     import Pagination from '../../../Components/Pagination.vue';
     import { ref } from 'vue';
     import { Inertia } from '@inertiajs/inertia';
+    import Swal from 'sweetalert2';
 
     export default {
         layout: LayoutApp,
@@ -85,9 +86,36 @@
                 });
             }
 
+            const destroy = (id) => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+
+                        Inertia.delete(`/apps/users/${id}`);
+
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'User deleted successfully.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false,
+                        });
+                    }
+                })
+            }
+
             return { 
                 search,
                 handleSearch,
+                destroy
             }
         }
     }
